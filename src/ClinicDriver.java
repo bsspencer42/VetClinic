@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 /**
  * Driver class to demonstrate a Clinic treating various patients
  */
-
 /*
 public class ClinicDriver {
 
@@ -23,4 +22,4 @@ public class ClinicDriver {
         }
     }
 }
-*/
+ */

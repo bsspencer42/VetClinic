@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 public class Dog extends Pet {
     // Instance variables
     private double droolRate;
@@ -52,13 +54,9 @@ public class Dog extends Pet {
         return super.equals(o) && this.droolRate == ((Dog) o).getDroolRate();
     }
 
-    public static void main(String[] args) {
-        Dog d = new Dog("Teddy", 5,6,4);
-        Dog dd = new Dog("Teddy", 5,5,4);
-        System.out.println(d.equals(dd));
-        dd.speak();
-        Cat c = new Cat("Cowboy", 5,5,4);
-        c.speak();
+    public static void main(String[] args) throws FileNotFoundException {
+        Clinic c = new Clinic("Patients.csv");
+        c.nextDay("Appointments.csv");
     }
 
 }
