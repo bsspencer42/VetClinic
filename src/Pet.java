@@ -27,10 +27,10 @@ public abstract class Pet {
     public String getName(){
         return this.name;
     }
-    public double health(){
+    public double getHealth(){
         return this.health;
     }
-    public int painLevel(){
+    public int getPainLevel(){
         return this.painLevel;
     }
 
