@@ -19,8 +19,6 @@ public class Dog extends Pet {
         return  this.droolRate;
     }
 
-
-
     // Inherited Methods
     public int treat(){
         int painMult = 1;
@@ -42,16 +40,23 @@ public class Dog extends Pet {
 
     // Overrides
     @Override
-    public void speak(){
+    public void speak() {
         String speakString = "bark ".repeat(this.getPainLevel()).trim();
         speakString = this.getPainLevel() > 5 ? speakString.toUpperCase() : speakString;
         super.speak();
         System.out.print(speakString);
-        }
+    }
+
+    @Override
+    public boolean equals(Object o){
+        return super.equals(o) && this.droolRate == ((Dog) o).getDroolRate();
+    }
 
     public static void main(String[] args) {
         Dog d = new Dog("Teddy", 5,6,4);
-        d.speak();
+        Dog dd = new Dog("Teddy", 5,6,4);
+        System.out.println(d.equals(dd));
+        dd.speak();
     }
 
 }
