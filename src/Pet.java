@@ -42,7 +42,7 @@ public abstract class Pet {
         System.out.println("Hello! My name is " + this.name);
     }
 
-    public void heal(){
+    protected void heal(){
         this.health = 1.0;
         this.painLevel = 1;
     }
