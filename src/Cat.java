@@ -41,7 +41,7 @@ public class Cat extends Pet {
         String speakString = "meow ".repeat(this.getPainLevel()).trim();
         speakString = this.getPainLevel() > 5 ? speakString.toUpperCase() : speakString;
         super.speak();
-        System.out.print(speakString);
+        System.out.println(speakString);
     }
 
     @Override

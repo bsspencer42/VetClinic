@@ -44,7 +44,7 @@ public class Dog extends Pet {
         String speakString = "bark ".repeat(this.getPainLevel()).trim();
         speakString = this.getPainLevel() > 5 ? speakString.toUpperCase() : speakString;
         super.speak();
-        System.out.print(speakString);
+        System.out.println(speakString);
     }
 
     @Override
@@ -54,9 +54,11 @@ public class Dog extends Pet {
 
     public static void main(String[] args) {
         Dog d = new Dog("Teddy", 5,6,4);
-        Dog dd = new Dog("Teddy", 5,6,4);
+        Dog dd = new Dog("Teddy", 5,5,4);
         System.out.println(d.equals(dd));
         dd.speak();
+        Cat c = new Cat("Cowboy", 5,5,4);
+        c.speak();
     }
 
 }
