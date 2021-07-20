@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 /**
  * Driver class to demonstrate a Clinic treating various patients
  */
+
+/*
 public class ClinicDriver {
 
     public static void main(String[] args) {
@@ -21,3 +23,4 @@ public class ClinicDriver {
         }
     }
 }
+*/

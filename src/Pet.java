@@ -39,7 +39,9 @@ public abstract class Pet {
 
     // Methods
     public void speak(){
-        System.out.println("Hello! My name is " + this.name);
+        String speakString = "Hello! My name is " + this.name;
+        speakString = this.getPainLevel() > 5 ? speakString.toUpperCase() : speakString;
+        System.out.println(speakString);
     }
 
     protected void heal(){
