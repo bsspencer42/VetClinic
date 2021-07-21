@@ -35,10 +35,10 @@ public class Clinic {
             String[] nextAppt = fileScanner.nextLine().trim().split(",");
             String name = nextAppt[0];
             String petType = nextAppt[1];
-            String droolMice = nextAppt[2];
+            double droolMice = Double.parseDouble(nextAppt[2]);
             String apptTime = nextAppt[3];
-            double health = 0;
-            double painLevel = 0;
+            double InitialHealth = 0;
+            double InitialPainLevel = 0;
             boolean success = false;
             // Health Check
             System.out.println("Consultation for " + name + " the " + petType + " at " + apptTime + ".");
@@ -48,7 +48,7 @@ public class Clinic {
             } // Check if pet type valid
             while (!success) {
                 try {
-                    health = userInput.nextDouble();
+                    InitialHealth = userInput.nextDouble();
                     userInput.nextLine();
                     success = true;
                 }
@@ -61,7 +61,7 @@ public class Clinic {
             success = false;
             while (!success) {
                 try {
-                    painLevel = userInput.nextDouble();
+                    InitialPainLevel = userInput.nextDouble();
                     userInput.nextLine();
                     success = true;
                 }
@@ -69,18 +69,18 @@ public class Clinic {
                     userInput.nextLine();
                 }
             }
-            // Speak
+            // Treat dog
             if (petType.equals("Dog")){
-                Dog currentPet = new Dog(name,health,(int) painLevel,droolMice);
+                Dog currentPet = new Dog(name,InitialHealth,(int) InitialPainLevel,droolMice);
                 currentPet.speak();
                 currentPet.treat();
             }
+            // Treat cat
             else {
-                Cat currentPet = new Cat(name, health, (int) painLevel,droolMice);
+                Cat currentPet = new Cat(name, InitialHealth, (int) InitialPainLevel,(int) droolMice);
                 currentPet.speak();
                 currentPet.treat();
             }
-
         }
         return "done";
     }
