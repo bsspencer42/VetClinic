@@ -54,9 +54,4 @@ public class Dog extends Pet {
         return super.equals(o) && this.droolRate == ((Dog) o).getDroolRate();
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Clinic c = new Clinic("Patients.csv");
-        c.nextDay("Appointments.csv");
-    }
-
 }
