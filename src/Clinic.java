@@ -41,6 +41,7 @@ public class Clinic {
             String name = nextAppt[0];
             String petType = nextAppt[1];
             double droolMice = Double.parseDouble(nextAppt[2]);
+            String miceDrool;
             String apptTime = nextAppt[3];
 
             // Health Check
@@ -59,26 +60,37 @@ public class Clinic {
             Pet currentPet;  // Create w/ declared type as parent for case of either cat or dog
            if (petType.equals("Dog")){
                currentPet = new Dog(name,InitialHealth,InitialPainLevel,droolMice);
+               miceDrool = String.valueOf(droolMice);
            }
            else {
                currentPet = new Cat(name,InitialHealth,InitialPainLevel,(int) droolMice);
+               miceDrool = String.valueOf(((int) droolMice));
            }
+           InitialHealth = currentPet.getHealth();
 
            // Speak and heal
            currentPet.speak();
            int timeToHeal = currentPet.treat();
            currentPet.heal();
 
+           // Calculate time out
+            String timeOut = String.valueOf(Integer.parseInt(apptTime)+ timeToHeal);
+            for (int i = 0; i < 4 - timeOut.length();i++) // Add trailing zeros.
+            {
+                timeOut = "0" + timeOut;
+            }
+
            // String to output
-           outPutString += String.join(",",name, petType,String.valueOf(droolMice), "Day " + String.valueOf(day),apptTime,
-                   String.valueOf(Integer.parseInt(apptTime)+ timeToHeal),String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
+           outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),apptTime,
+                   timeOut,String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
         this.day = day+1;
+        System.out.println(outPutString);
         return outPutString;
     }
 
     public boolean addToFile(String patientInfo){
-
+        return true;
     }
 
     // Helper method - User input prompt
