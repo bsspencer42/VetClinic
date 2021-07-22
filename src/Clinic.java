@@ -62,20 +62,17 @@ public class Clinic {
            else {
                currentPet = new Cat(name,InitialHealth,InitialPainLevel,(int) droolMice);
            }
-            System.out.println(currentPet.getHealth());
 
            // Speak and heal
            currentPet.speak();
            int timeToHeal = currentPet.treat();
            currentPet.heal();
 
-            System.out.println(timeToHeal);
            // String to output
            outPutString += String.join(",",name, petType,String.valueOf(droolMice), "Day " + String.valueOf(day),apptTime,
-                   String.valueOf(Integer.parseInt(apptTime)+ timeToHeal),String.valueOf(InitialHealth),String.valueOf(InitialPainLevel));
-            System.out.println(outPutString);
+                   String.valueOf(Integer.parseInt(apptTime)+ timeToHeal),String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
-        return "done";
+        return outPutString;
     }
 
     // Helper method - User input prompt
