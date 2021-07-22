@@ -21,9 +21,6 @@ public class Cat extends Pet {
         int painMult = 1;
         int healthMult = 1;
 
-        // Call parent class heal method
-        super.heal();
-
         // Modifiers for droolRate
         if (miceCaught < 4){
             painMult = 2;
@@ -32,7 +29,12 @@ public class Cat extends Pet {
             healthMult = 2;
         }
 
-        return (int) ((this.getPainLevel()*painMult) / (this.getHealth()*healthMult));
+        int timeHeal = (int) ((this.getPainLevel()*painMult) / (this.getHealth()*healthMult));
+
+        // Call parent class heal method
+        super.heal();
+
+        return timeHeal;
     }
 
     // Overrides
