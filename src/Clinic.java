@@ -20,10 +20,11 @@ public class Clinic {
     }
 
     // Methods
+
+    // Get output of day results
     public String nextDay(String filename) throws FileNotFoundException,InvalidPetException {
         return nextDay(new File(filename));
     }
-
     public String nextDay(File file) throws FileNotFoundException,InvalidPetException {
         //Setup file scanning object
         Scanner fileScanner = new Scanner(file);
@@ -72,7 +73,12 @@ public class Clinic {
            outPutString += String.join(",",name, petType,String.valueOf(droolMice), "Day " + String.valueOf(day),apptTime,
                    String.valueOf(Integer.parseInt(apptTime)+ timeToHeal),String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
+        this.day = day+1;
         return outPutString;
+    }
+
+    public boolean addToFile(String patientInfo){
+
     }
 
     // Helper method - User input prompt
