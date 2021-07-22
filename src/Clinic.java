@@ -37,8 +37,6 @@ public class Clinic {
             String petType = nextAppt[1];
             double droolMice = Double.parseDouble(nextAppt[2]);
             String apptTime = nextAppt[3];
-            double InitialHealth = 0;
-            double InitialPainLevel = 0;
             boolean success = false;
             // Health Check
             System.out.println("Consultation for " + name + " the " + petType + " at " + apptTime + ".");
@@ -46,43 +44,42 @@ public class Clinic {
             if (!petType.equals("Dog") && !petType.equals("Cat")) {
                 throw new InvalidPetException();
             } // Check if pet type valid
-            while (!success) {
-                try {
-                    InitialHealth = userInput.nextDouble();
-                    userInput.nextLine();
-                    success = true;
-                }
-                catch (InputMismatchException e) {
-                    userInput.nextLine();
-                }
-            }
+            double InitialHealth = getData();
             // Pain check
             System.out.println("On a scale of 1 to 10, how much pain is " + name + " in right now?");
-            success = false;
-            while (!success) {
-                try {
-                    InitialPainLevel = userInput.nextDouble();
-                    userInput.nextLine();
-                    success = true;
-                }
-                catch (InputMismatchException e) {
-                    userInput.nextLine();
-                }
-            }
-            // Treat dog
-            if (petType.equals("Dog")){
-                Dog currentPet = new Dog(name,InitialHealth,(int) InitialPainLevel,droolMice);
-                currentPet.speak();
-                currentPet.treat();
-            }
-            // Treat cat
-            else {
-                Cat currentPet = new Cat(name, InitialHealth, (int) InitialPainLevel,(int) droolMice);
-                currentPet.speak();
-                currentPet.treat();
-            }
+            int InitialPainLevel = (int) getData();
+            // Create pet object
+            Pet currentPet;  // Create w/ declared type as parent for case of either cat or dog
+           if (petType.equals("Dog")){
+               currentPet = new Dog(name,InitialHealth,InitialPainLevel,droolMice);
+           }
+           else {
+               currentPet = new Cat(name,InitialHealth,InitialPainLevel,(int) droolMice);
+           }
+           // Speak and treat
+           currentPet.speak();
+           currentPet.heal();
+
         }
         return "done";
+    }
+
+    // Helper method - User input prompt
+    private double getData(){
+        boolean success = false;
+        double InitialVal = 0;
+        Scanner userInput = new Scanner(System.in);
+        while (!success) {
+            try {
+                InitialVal = userInput.nextDouble();
+                userInput.nextLine();
+                success = true;
+            }
+            catch (InputMismatchException e) {
+                userInput.nextLine();
+            }
+        }
+        return InitialVal;
     }
 
     public static void main(String[] args) throws FileNotFoundException,InvalidPetException {
