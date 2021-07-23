@@ -1,0 +1,248 @@
+[Executed at: Fri Jul 23 8:26:49 PDT 2021]
+
+Error: All homework did not pass
+Note: /mnt/ro/data2/students/sub1/ccc_v1_c_48ao_206651/asn281738_8/asn281739_1/asnlib.0/PetTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /mnt/ro/data2/students/sub1/ccc_v1_c_48ao_206651/asn281738_8/asn281739_1/asnlib.0/CatTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+
+Running: test_clinic_addToFile_empty
+Failed: addToFile doesn't add patient to empty patients file properly expected:<[Gamma,Cat,4,Day 1,1655,1700,0.4,4]> but was:<[]>
+Finished: test_clinic_addToFile_empty
+
+
+Running: test_clinic_addToFile_duplicates
+Failed: addToFile doesn't modify repeat patient information correctly expected:<...1655,1700,0.4,4,Day [2,0800,0900,0.6,3]> but was:<...1655,1700,0.4,4,Day [1,1655,1700,0.4,4]>
+
+
+Finished: test_clinic_addToFile_duplicates
+Running: test_clinic_file_exists
+Finished: test_clinic_file_exists
+Running: test_clinic_addToFile_no_duplicates
+Finished: test_clinic_addToFile_no_duplicates
+Running: test_clinic_missing_file
+Finished: test_clinic_missing_file
+Running: test_clinic_addTime_functionality
+Failed: Correctly adds time more than an hour. expected:<2[23]0> but was:<2[11]0>
+
+
+Finished: test_clinic_addTime_functionality
+Running: testFileConstructorClinic
+Finished: testFileConstructorClinic
+Running: testClinicAddTime
+Your nextDay method calls the addTime method.
+Finished: testClinicAddTime
+Running: test_clinic_variables
+You correctly declared the patientFile variable
+You correctly declared the day variable
+Finished: test_clinic_variables
+Running: test_clinic_addToFile
+You correctly declared your addToFile method
+Finished: test_clinic_addToFile
+Running: test_clinic_nextDay
+You correctly overloaded your nextDay method
+Finished: test_clinic_nextDay
+Running: test_clinic_constructor
+You correctly declared the constuctors in pet.
+Finished: test_clinic_constructor
+Running: testClinicSpeak
+Your nextDay method calls the speak method.
+Finished: testClinicSpeak
+Running: testClinicTreat
+Your nextDay method calls the treat method.
+Finished: testClinicTreat
+Running: test_clinic_addTime
+You correctly declared your addTime method
+Finished: test_clinic_addTime
+Running: test_pet_speak
+You correctly declared your speak method
+Finished: test_pet_speak
+
+
+Running: test_pet_treat
+Failed: Could not find method: treat([])
+Finished: test_pet_treat
+
+
+
+Running: test_pet_heal_implementation
+Pet's heal method is correct.
+Finished: test_pet_heal_implementation
+Running: test_pet_heal
+You correctly declared your heal method
+Finished: test_pet_heal
+Running: testPetIsAbstract
+Pet class is abstract!
+Finished: testPetIsAbstract
+Running: testPetConstructor
+You correctly declared the constuctor in pet.
+Finished: testPetConstructor
+Running: test_pet_variables
+You correctly declared the name variable
+You correctly declared the health variable
+You correctly declared the painLevel variable
+Finished: test_pet_variables
+Running: test_pet_speak_implementation_1
+Finished: test_pet_speak_implementation_1
+Running: test_pet_speak_implementation_2
+Finished: test_pet_speak_implementation_2
+Running: test_pet_equals
+You correctly declared your equals method
+Finished: test_pet_equals
+
+
+Running: test_invalid_except_parent
+Failed: InvalidPetException class should be an unchecked exception expected: but was:
+
+
+
+
+
+Finished: test_invalid_except_parent
+Running: testExceptionConstructorNoArg
+Finished: testExceptionConstructorNoArg
+Running: testExceptionConstructorOneArg
+Finished: testExceptionConstructorOneArg
+Running: testDogConstructor3Param
+Finished: testDogConstructor3Param
+Running: testDogTreatHeal
+Your treat method in Dog calls the heal method.
+Finished: testDogTreatHeal
+Running: test_dog_equals
+You correctly declared your equals method
+Finished: test_dog_equals
+Running: test_dog_speak_implementation_1
+Finished: test_dog_speak_implementation_1
+Running: test_dog_speak_implementation_2
+Finished: test_dog_speak_implementation_2
+Running: testDogTreatTime1
+Dog's treat method is correct for droolRate < 3.5
+Finished: testDogTreatTime1
+Running: testDogTreatTime2
+Dog's treat method is correct for 3.5 <= droolRate <= 7.5
+Finished: testDogTreatTime2
+Running: testDogTreatTime3
+Dog's treat method is correct for droolRate > 7.5
+Finished: testDogTreatTime3
+Running: testDogTreatTime4
+Dog's treat method is correct for edge case.
+Finished: testDogTreatTime4
+Running: testDogExtendsPet
+Finished: testDogExtendsPet
+Running: test_dog_equals_implementation
+You correctly implemented your equals method
+Finished: test_dog_equals_implementation
+Running: test_Dog_variables
+You correctly declared the droolRate variable.
+Finished: test_Dog_variables
+Running: testGetMiceCaughtExists
+Finished: testGetMiceCaughtExists
+Running: test4ParamConstructorCatAP
+Finished: test4ParamConstructorCatAP
+Running: test_dog_equals_parent
+Dog equals method correctly calls Pet's equals method.
+Finished: test_dog_equals_parent
+Running: testDogSpeak
+Finished: testDogSpeak
+Running: testDogTreat
+Finished: testDogTreat
+Running: testDogConstructor
+Finished: testDogConstructor
+Running: test3ParamConstructorCatAP
+Finished: test3ParamConstructorCatAP
+Running: test_cat_equals
+You correctly declared your equals method
+Finished: test_cat_equals
+Running: testCatTreatHeal
+Your treat method in Cat calls the heal method.
+Finished: testCatTreatHeal
+Running: test_Cat_equals_implementation
+You correctly implemented your equals method
+Finished: test_Cat_equals_implementation
+Running: testCatConstructor
+Finished: testCatConstructor
+Running: testGetMiceCaughtExists
+Finished: testGetMiceCaughtExists
+Running: test4ParamConstructorCatAP
+Finished: test4ParamConstructorCatAP
+Running: test_cat_variables
+You correctly declared the miceCaught variable.
+Finished: test_cat_variables
+Running: test_cat_equals_parent
+Cat equals method correctly calls Pet's equals method.
+Finished: test_cat_equals_parent
+Running: testCatTreatTime1
+Cat's treat method is correct for miceCaught < 4
+Finished: testCatTreatTime1
+Running: testCatTreatTime2
+Cat's treat method is correct for 4 <= droolRate <= 7
+Finished: testCatTreatTime2
+Running: testCatTreatTime3
+Cat's treat method is correct for droolRate > 7
+Finished: testCatTreatTime3
+Running: testCatTreatTime4
+Cat's treat method is correct for edge case.
+Finished: testCatTreatTime4
+Running: testCatExtendsPet
+Finished: testCatExtendsPet
+Running: testCatSpeak
+Finished: testCatSpeak
+Running: testCatTreat
+Finished: testCatTreat
+Running: test_cat_speak_implementation_1
+Finished: test_cat_speak_implementation_1
+Running: test_cat_speak_implementation_2
+Finished: test_cat_speak_implementation_2
+Running: testCatConstructor3Param
+Finished: testCatConstructor3Param
+Running: test3ParamConstructorCatAP
+Finished: test3ParamConstructorCatAP
+Running: clinicNextDayIncrementsDay
+Failed: nextDay did not increment day varaible. expected:<31> but was:<30>
+Finished: clinicNextDayIncrementsDay
+Running: clinicNextDayThrowsOnInvalidPet
+Failed: When given pet type of Zebra, nextDay did not throw InvalidPetException
+Finished: clinicNextDayThrowsOnInvalidPet
+Running: clinicNextDayRepromptsOnInvalidInput
+Failed: System.in was given following values when calling nextDay:
+ImAString
+.87
+4
+false
+.9
+12
+.1342
+RandomText
+20
+.2
+1
+
+And did not properly reprompt when given invalid input
+Finished: clinicNextDayRepromptsOnInvalidInput
+Running: clinicNextDayReturnValue
+Failed: nextDay returned null or threw an exception. It was given the following values for System.in:
+.5
+5
+.5
+5
+.5
+5
+.5
+5
+
+And the file contained the following contents:
+Chloe,Cat,2,1430
+Jim,Dog,3,1945
+John,Cat,10,1637
+Sally,Dog,3.7,1345
+Finished: clinicNextDayReturnValue
+Running: clinicOutput
+Failed: Got java.util.NoSuchElementExceptioninvoking nextDay method on valid file.
+Finished: clinicOutput
+Running: clinicNextDayThrowsOnWrongCasePet
+Failed: When given pet type of dOG and cat, nextDay did not throw InvalidPetException
+Finished: clinicNextDayThrowsOnWrongCasePet
+Test run: 72, Passed: 61, Failed: 11
+Score: 84/100
+
