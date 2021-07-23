@@ -41,11 +41,11 @@ public class Clinic {
             String name = nextAppt[0];
             String petType = nextAppt[1];
             double droolMice = Double.parseDouble(nextAppt[2]);
-            String miceDrool;
-            String apptTime = nextAppt[3];
+            String miceDrool; // Used to store int/double for output as string
+            String timeIn = nextAppt[3];
 
             // Health Check
-            System.out.println("Consultation for " + name + " the " + petType + " at " + apptTime + ".");
+            System.out.println("Consultation for " + name + " the " + petType + " at " + timeIn + ".");
             System.out.println("What is the health of " + name + "?");
             if (!petType.equals("Dog") && !petType.equals("Cat")) {
                 throw new InvalidPetException();
@@ -74,14 +74,14 @@ public class Clinic {
            currentPet.heal();
 
            // Calculate time out
-            String timeOut = String.valueOf(Integer.parseInt(apptTime)+ timeToHeal);
+            String timeOut = String.valueOf(Integer.parseInt(timeIn)+ timeToHeal);
             for (int i = 0; i < 4 - timeOut.length();i++) // Add trailing zeros.
             {
                 timeOut = "0" + timeOut;
             }
 
            // String to output
-           outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),apptTime,
+           outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),timeIn,
                    timeOut,String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
         this.day = day+1;
@@ -89,7 +89,66 @@ public class Clinic {
         return outPutString;
     }
 
-    public boolean addToFile(String patientInfo){
+    // Add patient info to file
+    public boolean addToFile(String patientInfo) throws FileNotFoundException {
+        // Parse input
+        String [] patientParsed = patientInfo.trim().split(",");
+        String name = patientParsed[0];
+
+        Scanner fileScanner = null;
+        PrintWriter filePrint = null;
+
+        try {
+            // Setup scanner object
+            fileScanner = new Scanner(patientFile);
+            String tempFileContents = "";
+
+            // First read all data to String array
+            while (fileScanner.hasNextLine()){
+                tempFileContents += fileScanner.nextLine()+ "\n";
+            }
+            fileScanner.close();
+
+            // Create printwriter object to modify file as necessary
+            filePrint = new PrintWriter("tempFile.csv");
+
+            System.out.println(tempFileContents);
+            String[] tempFileArray = tempFileContents.split("\n");
+
+            // Loop through contents and add data
+            int lineCount = 0; // counter
+            boolean success = false; // flag for name exists
+            String[] currentLine;
+            for (String line : tempFileArray){
+                lineCount += 1;
+                if (line.contains(name)){
+                    success = true;
+                    String[] lineParse = line.split(",");
+                    String day = lineParse[3]; String timeIn = lineParse[4]; String timeOut = lineParse[5];
+                    String health = lineParse[6]; String pain = lineParse[7];
+                    filePrint.println(String.join(",",line,day,timeIn,timeOut,health,pain));
+                }
+                else {
+                    filePrint.println(line);
+                }
+            }
+            // If patient name does not exist in record, append to end
+            if (!success){
+                filePrint.println(String.join(",",patientInfo));
+            }
+        }
+        catch (Exception e){
+            e.getMessage();
+            return false;
+        }
+        finally {
+            if (fileScanner != null){
+                fileScanner.close();
+            }
+            if (filePrint != null){
+                filePrint.close();
+            }
+        }
         return true;
     }
 
@@ -113,7 +172,8 @@ public class Clinic {
 
     public static void main(String[] args) throws FileNotFoundException,InvalidPetException {
         Clinic c = new Clinic("Patients.csv");
-        c.nextDay("Appointments.csv");
+        String nextPat = "Dolfy,Dog,0.1,Day 1,1523,1539,0.9,7";
+        System.out.println(c.addToFile(nextPat));
     }
 
 }
