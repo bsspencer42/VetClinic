@@ -67,10 +67,9 @@ public class Clinic {
            }
            InitialHealth = currentPet.getHealth();
 
-           // Speak and heal
+           // Treat the pet
            currentPet.speak();
            int timeToHeal = currentPet.treat();
-           currentPet.heal();
 
            // Calculate time out
             String timeOut = addTime(timeIn,timeToHeal);
@@ -105,9 +104,8 @@ public class Clinic {
             fileScanner.close();
 
             // Create printwriter object to modify file as necessary
-            filePrint = new PrintWriter("tempFile.csv");
+            filePrint = new PrintWriter(patientFile);
 
-            System.out.println(tempFileContents);
             String[] tempFileArray = tempFileContents.split("\n");
 
             // Loop through contents and add data
@@ -123,7 +121,7 @@ public class Clinic {
                     String health = lineParse[6]; String pain = lineParse[7];
                     filePrint.println(String.join(",",line,day,timeIn,timeOut,health,pain));
                 }
-                else {
+                else if (!line.equals("")) {
                     filePrint.println(line);
                 }
             }
@@ -168,12 +166,25 @@ public class Clinic {
 
     // Helper method for time out calc
     private String addTime(String timeIn, int treatmentTime){
-        String timeOut = String.valueOf(Integer.parseInt(timeIn)+ treatmentTime);
-        for (int i = 0; i < 4 - timeOut.length();i++) // Add trailing zeros.
+        // Handle minutes
+        int sumMins = (Integer.parseInt(timeIn.substring(timeIn.length()-2)) + treatmentTime);  // Get total num mins
+        int mins = sumMins % 60; // Leftover mins
+        int hrs = sumMins / 60; // Leftover hours
+
+        // Calculate timeOut
+        String timeOut = String.valueOf(Integer.parseInt(timeIn.substring(0,timeIn.length()-2)) + hrs) + mins;
+
+        // Add trailing zeros
+        for (int i = 0; i < 4 - timeOut.length();i++)
         {
             timeOut = "0" + timeOut;
         }
         return timeOut;
+    }
+
+    public static void main(String[] args) throws InvalidPetException, FileNotFoundException {
+        Clinic myClinic = new Clinic("Patients.csv");
+        System.out.println(myClinic.addTime("0845", 90));
     }
 
 }
