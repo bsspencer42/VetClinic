@@ -74,11 +74,7 @@ public class Clinic {
            currentPet.heal();
 
            // Calculate time out
-            String timeOut = String.valueOf(Integer.parseInt(timeIn)+ timeToHeal);
-            for (int i = 0; i < 4 - timeOut.length();i++) // Add trailing zeros.
-            {
-                timeOut = "0" + timeOut;
-            }
+            String timeOut = addTime(timeIn,timeToHeal);
 
            // String to output
            outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),timeIn,
@@ -168,6 +164,16 @@ public class Clinic {
             }
         }
         return InitialVal;
+    }
+
+    // Helper method for time out calc
+    private String addTime(String timeIn, int treatmentTime){
+        String timeOut = String.valueOf(Integer.parseInt(timeIn)+ treatmentTime);
+        for (int i = 0; i < 4 - timeOut.length();i++) // Add trailing zeros.
+        {
+            timeOut = "0" + timeOut;
+        }
+        return timeOut;
     }
 
     public static void main(String[] args) throws FileNotFoundException,InvalidPetException {
