@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Clinic {
@@ -160,6 +159,7 @@ public class Clinic {
                 success = true;
             }
             catch (InputMismatchException e) {
+                System.out.println("Please enter a number");
                 userInput.nextLine();
             }
         }
@@ -174,12 +174,6 @@ public class Clinic {
             timeOut = "0" + timeOut;
         }
         return timeOut;
-    }
-
-    public static void main(String[] args) throws FileNotFoundException,InvalidPetException {
-        Clinic c = new Clinic("Patients.csv");
-        String nextPat = "Dolfy,Dog,0.1,Day 1,1523,1539,0.9,7";
-        System.out.println(c.addToFile(nextPat));
     }
 
 }

@@ -3,15 +3,14 @@ import java.io.FileNotFoundException;
 /**
  * Driver class to demonstrate a Clinic treating various patients
  */
-/*
 public class ClinicDriver {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Clinic clinic = new Clinic("Patients.csv");
         String dayOneReport = "";
         try {
             dayOneReport = clinic.nextDay("Appointments.csv");
-        } catch (FileNotFoundException exception) {
+        } catch (FileNotFoundException | InvalidPetException exception) {
             exception.printStackTrace();
         }
         String[] dayOneAppointments = dayOneReport.split("\\n");
@@ -22,4 +21,3 @@ public class ClinicDriver {
         }
     }
 }
- */
