@@ -31,12 +31,10 @@ public class Clinic {
         // Local vars
         String outPutString = "";
 
-        // Increment day
-        this.day = day+1;
-
         // While loop to loop through each line in Appointments
         while (fileScanner.hasNextLine()) {
             // Parse next appointment into string array
+
             String[] nextAppt = fileScanner.nextLine().trim().split(",");
 
             // Create local variables for parsed line
@@ -51,7 +49,7 @@ public class Clinic {
             System.out.println("What is the health of " + name + "?");
             if (!petType.equals("Dog") && !petType.equals("Cat")) {
                 throw new InvalidPetException();
-            } // Check if pet type valid
+            }
             double InitialHealth = getData(0,1);
 
             // Pain check
@@ -60,32 +58,33 @@ public class Clinic {
 
             // Create pet object
             Pet currentPet;  // Create w/ declared type as parent for case of either cat or dog
-           if (petType.equals("Dog")){
-               currentPet = new Dog(name,InitialHealth,InitialPainLevel,droolMice);
-               miceDrool = String.valueOf(droolMice);
-           }
-           else {
-               currentPet = new Cat(name,InitialHealth,InitialPainLevel,(int) droolMice);
-               miceDrool = String.valueOf(((int) droolMice));
-           }
-           InitialHealth = currentPet.getHealth();
+            if (petType.equals("Dog")){
+                currentPet = new Dog(name,InitialHealth,InitialPainLevel,droolMice);
+                miceDrool = String.valueOf(droolMice);
+            }
+            else {
+                currentPet = new Cat(name,InitialHealth,InitialPainLevel,(int) droolMice);
+                miceDrool = String.valueOf(((int) droolMice));
+            }
+            InitialHealth = currentPet.getHealth();
 
-           // Treat the pet
-           currentPet.speak();
-           int timeToHeal = currentPet.treat();
+            // Treat the pet
+            currentPet.speak();
+            int timeToHeal = currentPet.treat();
 
-           // Calculate time out
+            // Calculate time out
             String timeOut = addTime(timeIn,timeToHeal);
 
-           // String to output
-           outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),timeIn,
-                   timeOut,String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
+            // String to output
+            outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),timeIn,
+                    timeOut,String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
+        this.day = day+1;
         return outPutString;
     }
 
     // Add patient info to file
-    public boolean addToFile(String patientInfo) throws FileNotFoundException {
+    public boolean addToFile(String patientInfo) {
         // Parse input
         String [] patientParsed = patientInfo.trim().split(",");
         String name = patientParsed[0];
@@ -194,11 +193,6 @@ public class Clinic {
             timeOut = "0" + timeOut;
         }
         return timeOut;
-    }
-
-    public static void main(String[] args) throws InvalidPetException, FileNotFoundException {
-        Clinic myClinic = new Clinic("Patients.csv");
-        System.out.println(myClinic.addTime("0845", 90));
     }
 
 }

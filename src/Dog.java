@@ -1,5 +1,3 @@
-import java.io.FileNotFoundException;
-
 public class Dog extends Pet {
     // Instance variables
     private double droolRate;

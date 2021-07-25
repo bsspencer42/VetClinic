@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
  */
 public class ClinicDriver {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         Clinic clinic = new Clinic("Patients.csv");
         String dayOneReport = "";
         try {
             dayOneReport = clinic.nextDay("Appointments.csv");
-        } catch (FileNotFoundException | InvalidPetException exception) {
+        } catch (FileNotFoundException exception) {
             exception.printStackTrace();
         }
         String[] dayOneAppointments = dayOneReport.split("\\n");

@@ -35,7 +35,7 @@ public abstract class Pet {
     }
 
     // Abstract Methods
-    abstract int treat();
+    public abstract int treat();
 
     // Methods
     public void speak(){
