@@ -31,6 +31,9 @@ public class Clinic {
         // Local vars
         String outPutString = "";
 
+        // Increment day
+        this.day = day+1;
+
         // While loop to loop through each line in Appointments
         while (fileScanner.hasNextLine()) {
             // Parse next appointment into string array
@@ -43,17 +46,22 @@ public class Clinic {
             String miceDrool; // Used to store int/double for output as string
             String timeIn = nextAppt[3];
 
+            // Check if petType is valid
+            if (!petType.equals("Dog") && !petType.equals("Cat")) {
+                throw new InvalidPetException();
+            }
+
             // Health Check
             System.out.println("Consultation for " + name + " the " + petType + " at " + timeIn + ".");
             System.out.println("What is the health of " + name + "?");
             if (!petType.equals("Dog") && !petType.equals("Cat")) {
                 throw new InvalidPetException();
             } // Check if pet type valid
-            double InitialHealth = getData();
+            double InitialHealth = getData(0,1);
 
             // Pain check
             System.out.println("On a scale of 1 to 10, how much pain is " + name + " in right now?");
-            int InitialPainLevel = (int) getData();
+            int InitialPainLevel = (int) getData(1,10);
 
             // Create pet object
             Pet currentPet;  // Create w/ declared type as parent for case of either cat or dog
@@ -78,8 +86,6 @@ public class Clinic {
            outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),timeIn,
                    timeOut,String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
-        this.day = day+1;
-        System.out.println(outPutString);
         return outPutString;
     }
 
@@ -146,7 +152,7 @@ public class Clinic {
     }
 
     // Helper method - User input prompt
-    private double getData(){
+    private double getData(double minVal, double maxVal){
         boolean success = false;
         double InitialVal = 0;
         Scanner userInput = new Scanner(System.in);
@@ -154,7 +160,13 @@ public class Clinic {
             try {
                 InitialVal = userInput.nextDouble();
                 userInput.nextLine();
-                success = true;
+
+                if (InitialVal < minVal || InitialVal > maxVal) {
+                    System.out.println("Please enter a number");
+                }
+                else {
+                    success = true;
+                }
             }
             catch (InputMismatchException e) {
                 System.out.println("Please enter a number");
