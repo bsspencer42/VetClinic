@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 
 public class Clinic {
     // Instance variables
-    File patientFile;
-    int day = 1;
+    private File patientFile;
+    private int day = 1;
 
     // Constructors
     public Clinic(String filename) {
@@ -34,8 +34,10 @@ public class Clinic {
         // While loop to loop through each line in Appointments
         while (fileScanner.hasNextLine()) {
             // Parse next appointment into string array
-
             String[] nextAppt = fileScanner.nextLine().trim().split(",");
+
+            // Increment day
+            this.day = day+1;
 
             // Create local variables for parsed line
             String name = nextAppt[0];
@@ -79,7 +81,6 @@ public class Clinic {
             outPutString += String.join(",",name, petType,String.valueOf(miceDrool), "Day " + String.valueOf(day),timeIn,
                     timeOut,String.valueOf(InitialHealth),String.valueOf(InitialPainLevel)) + "\n";
         }
-        this.day = day+1;
         return outPutString;
     }
 
@@ -152,8 +153,8 @@ public class Clinic {
         Scanner userInput = new Scanner(System.in);
         while (!success) {
             try {
-                String inputString = userInput.nextLine();
-                InitialVal = Double.parseDouble(inputString);
+                InitialVal = userInput.nextDouble();
+                userInput.nextLine();
 
                 if (InitialVal < minVal || InitialVal > maxVal) {
                     System.out.println("Please enter a number");
@@ -164,10 +165,8 @@ public class Clinic {
             }
             catch (InputMismatchException e) {
                 System.out.println("Please enter a number");
+                userInput.nextLine();
             }
-            catch (Exception d) {
-                System.out.println("Please enter a number");
-            } // Catch space
         }
         return InitialVal;
     }
