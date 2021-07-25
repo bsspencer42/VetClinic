@@ -46,11 +46,6 @@ public class Clinic {
             String miceDrool; // Used to store int/double for output as string
             String timeIn = nextAppt[3];
 
-            // Check if petType is valid
-            if (!petType.equals("Dog") && !petType.equals("Cat")) {
-                throw new InvalidPetException();
-            }
-
             // Health Check
             System.out.println("Consultation for " + name + " the " + petType + " at " + timeIn + ".");
             System.out.println("What is the health of " + name + "?");
@@ -123,8 +118,8 @@ public class Clinic {
                 if (line.contains(name)){
                     success = true;
                     String[] lineParse = line.split(",");
-                    String day = lineParse[3]; String timeIn = lineParse[4]; String timeOut = lineParse[5];
-                    String health = lineParse[6]; String pain = lineParse[7];
+                    String day = patientParsed[3]; String timeIn = patientParsed[4]; String timeOut = patientParsed[5];
+                    String health = patientParsed[6]; String pain = patientParsed[7];
                     filePrint.println(String.join(",",line,day,timeIn,timeOut,health,pain));
                 }
                 else if (!line.equals("")) {
@@ -182,8 +177,13 @@ public class Clinic {
     private String addTime(String timeIn, int treatmentTime){
         // Handle minutes
         int sumMins = (Integer.parseInt(timeIn.substring(timeIn.length()-2)) + treatmentTime);  // Get total num mins
-        int mins = sumMins % 60; // Leftover mins
+        String mins = String.valueOf((sumMins % 60)); // Leftover mins
         int hrs = sumMins / 60; // Leftover hours
+
+        // Add mins trailing zeros
+        if (mins.length() == 1) {
+            mins = "0" + mins;
+        }
 
         // Calculate timeOut
         String timeOut = String.valueOf(Integer.parseInt(timeIn.substring(0,timeIn.length()-2)) + hrs) + mins;

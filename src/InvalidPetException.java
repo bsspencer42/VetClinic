@@ -1,4 +1,4 @@
-public class InvalidPetException extends Error {
+public class InvalidPetException extends RuntimeException {
     public InvalidPetException(){
         super("Your pet is invalid!");
     }
