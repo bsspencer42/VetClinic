@@ -158,8 +158,8 @@ public class Clinic {
         Scanner userInput = new Scanner(System.in);
         while (!success) {
             try {
-                InitialVal = userInput.nextDouble();
-                userInput.nextLine();
+                String inputString = userInput.nextLine();
+                InitialVal = Double.parseDouble(inputString);
 
                 if (InitialVal < minVal || InitialVal > maxVal) {
                     System.out.println("Please enter a number");
@@ -170,8 +170,10 @@ public class Clinic {
             }
             catch (InputMismatchException e) {
                 System.out.println("Please enter a number");
-                userInput.nextLine();
             }
+            catch (Exception d) {
+                System.out.println("Please enter a number");
+            } // Catch space
         }
         return InitialVal;
     }
